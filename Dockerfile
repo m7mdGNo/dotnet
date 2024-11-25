@@ -8,8 +8,8 @@ WORKDIR /
 COPY ./ /
 
 # Expose port 80 for HTTP and 443 for HTTPS
-EXPOSE 80
-EXPOSE 8443
+EXPOSE 8080
+EXPOSE 443
 
 # Start the application
 ENTRYPOINT ["dotnet", "Sports.Api.dll"]
