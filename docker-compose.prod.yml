@@ -6,16 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "443:443" # HTTPS port
-      - "80:80"   # HTTP port (optional)
+      - "8443:443"  # Change 443 to 8443 for external access
+      - "80:80"     # Keep port 80 for HTTP (optional)
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-    secrets:
-      - db_password
-    depends_on:
-      - db
     networks:
       - appnetwork
+    depends_on:
+      - db
     restart: always
 
   db:
