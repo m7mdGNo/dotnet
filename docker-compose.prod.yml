@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8443:443"  # Change 443 to 8443 for external access
-      - "8002:80"     # Keep port 80 for HTTP (optional)
+      - "8002:80"
+      - "8443:443"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     networks:
@@ -28,6 +28,20 @@ services:
       - db_password
     networks:
       - appnetwork
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./infrastructure/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - appnetwork
+    depends_on:
+      - webapp
     restart: always
 
 secrets:
