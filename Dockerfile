@@ -8,7 +8,7 @@ WORKDIR /
 COPY ./ /
 
 # Expose port 80 for HTTP and 443 for HTTPS
-EXPOSE 801
+EXPOSE 80
 EXPOSE 8443
 
 # Start the application
