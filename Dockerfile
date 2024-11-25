@@ -7,9 +7,9 @@ WORKDIR /
 # Copy the DLL files into the container
 COPY ./ /
 
-# Expose port 80 for HTTP and 443 for HTTPS
-EXPOSE 8080
-EXPOSE 8443
+# # Expose port 80 for HTTP and 443 for HTTPS
+# EXPOSE 8001
+# EXPOSE 8443
 
 # Start the application
 ENTRYPOINT ["dotnet", "Sports.Api.dll"]
