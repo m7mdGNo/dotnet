@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8443:443"  # Change 443 to 8443 for external access
-      - "80:80"     # Keep port 80 for HTTP (optional)
+      - "801:80"     # Keep port 80 for HTTP (optional)
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     networks:
