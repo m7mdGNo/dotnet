@@ -2,10 +2,10 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /
 
 # Copy the DLL files into the container
-COPY ./app /app
+COPY ./ /
 
 # Expose port 80 for HTTP and 443 for HTTPS
 EXPOSE 80
