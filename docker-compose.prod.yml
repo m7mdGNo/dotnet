@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "443:443" # HTTPS port
+      - "80:80"   # HTTP port (optional)
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    secrets:
+      - db_password
+    depends_on:
+      - db
+    networks:
+      - appnetwork
+    restart: always
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD_FILE: /run/secrets/db_password
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    secrets:
+      - db_password
+    networks:
+      - appnetwork
+    restart: always
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+
+networks:
+  appnetwork:
+    driver: bridge
